@@ -1,0 +1,37 @@
+install postfix
+sudo apt-get install mailutils
+sudo apt-get update
+check mail in /usr/bin
+send mail using
+echo "This is message body" | mail -s "This is Subject" sandeshs@devtools.in, vishwasm@devtools.in.
+check mail -> spam
+after delay
+promotion takes place.
+
+sudo vi check.sh
+
+if ping -c 10 primary-hostname; then
+echo "server up"
+else
+echo "server down"
+  sleep 3m;
+  if ping -c 10 primary-hostname; then
+  echo "server up"
+  else 
+  echo "server down"
+  echo "This is message body" | /usr/bin/mail -s "This is Subject" someone@example.com
+  sleep 15m
+  ssh -p 122 admin@replica-hostname
+  ghe-repl-promote
+...............................................................
+
+
+
+
+  fi
+fi
+
+crontab -e -> sudo sh check.sh
+sudo chmod 777 check.sh
+
+contineously ping -> if server is down for a fixed amount of time -> send a mail to admin -> delay for a fixed amount of time -> check status -> promote replica as primary
